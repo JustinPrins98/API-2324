@@ -1,12 +1,18 @@
 {
-  "name": "api-2324",
+  "name": "api-vak",
   "version": "1.0.0",
-  "description": "In dit vier weken durende vak zullen we de kracht van het web ervaren en kijken hoe we (mobiele) web apps kunnen maken die\nnet zo aantrekkelijk zijn als native mobiele apps.",
+  "description": "",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "lint": "eslint . --ext .js,.liquid"
+    "start": "node server.js",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:server": "nodemon server.js --ext js,liquid",
+    "dev:client": "vite --config vite.config.js",
+    "build": "npm-run-all build:*"
   },
-  "license": "MIT",
+  "author": "Justin",
+  "license": "ISC",
   "dependencies": {
     "@tinyhttp/app": "^2.2.3",
     "@tinyhttp/logger": "^2.0.0",
