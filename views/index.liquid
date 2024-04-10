@@ -6,20 +6,33 @@
 
 {% block content %}
 
-  <nav>
-    <h1>{{ title }}</h1>
-  </nav>
 
-  <form>
-    <label for="searchSite">Search for a movie</label>
-    <input type="search" id="searchSite">
-  </form>`
+  <header>
+    <img src="https://image.tmdb.org/t/p/w500{{ upcomingData.results[1].backdrop_path }}" alt="{{ upcomingData.results[0].title }}" class="headerImg">
+  </header>
 
+ 
+
+  <main>
+    <form>
+      <label for="searchSite">Search for a movie</label>
+      <input type="search" id="searchSite">
+    </form>
 <section>
-<img src="" alt="">
-<p>Eureka</p>
-<p>hoi</p>
+  <h2> Trending </h2>
+  <ul>
+    {% for movie in movieData.results  %}  
+    <li>
+      <a href="/movie/{{movie.id}}">
+      <img src="https://image.tmdb.org/t/p/w400{{ movie.poster_path }}" alt="{{ movie.title }}">
+      <span>{{ movie.title | default: movie.name }}</span>
+      </a>
+      
+    </li>
+    {% endfor %}  
+  </ul>
 </section>
+</main>
 
   
 {% endblock %}

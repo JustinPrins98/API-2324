@@ -9,34 +9,36 @@ const engine = new Liquid({
     extname: '.liquid'
 });
 
+
+
 const app = new App();
 
 app
     .use(logger())
     .use('/', sirv('src'))
-    .listen(3000);
+    .listen(4000);
 
 app.get('/', async (req, res) => {
-    const movieData = await getMovies();
-    //   return res.send(renderTemplate('views/index.liquid', { title: 'Movies', movieData }));
-    return res.send(renderTemplate('views/index.liquid', { title: 'MoMovies' }));
+    const movieData = await getMovieDBData('https://api.themoviedb.org/3/trending/all/day?language=en-US');
+    const upcomingData = await getMovieDBData('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1');
+    const movieDetail = await getMovieDBData('https://api.themoviedb.org/3/movie/movie_id?language=en-US');
+    return res.send(renderTemplate('views/index.liquid', { title: 'DownloadMovieGetVirus', movieData, upcomingData, movieDetail }));
 });
 
-// app.get('/movie/:id/', async (req, res) => {
-//   const movieId = req.params.id;
-//   const movie = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.MOVIEDB_TOKEN}`).then(res => res.json());
-//   return res.send(renderTemplate('views/detail.liquid', { title: 'Movie', movie }));
-// });
-
-const getMovies = async () => {
-    const response = await fetch(`https://api.themoviedb.org/3/trending/all/day?language=en-US&api_key=${process.env.MOVIEDB_TOKEN}`);
-    const movieData = await response.json();
+app.get('/movie/:id/', async (req, res) => {
+    const movieId = req.params.id;
+    console.log("movieID", movieId)
+    const movieDetail = await getMovieDBData('https://api.themoviedb.org/3/movie/' + movieId + '?language=en-US');
+    return res.send(renderTemplate('views/detail.liquid', { title: 'DownloadMovieGetVirus', movieDetail }));
+});
 
 
-    console.log('movieData', movieData);
-    return movieData;
-};
-
+const getMovieDBData = async (url) => {
+    const response = await fetch(`${url}&api_key=${process.env.API_KEY}`);
+    const resultData = await response.json();
+    console.log('resultData', resultData);
+    return resultData;
+}
 
 const renderTemplate = (template, data) => {
     const templateData = {

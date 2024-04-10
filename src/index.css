@@ -1,11 +1,86 @@
-body {
-  background-color: #1a1a1a;
-  color: #fff;
+@layer base {
+  * {
+    margin: 0;
+  }
+
+  :root {
+    --backgroundColor: #1a1b4b;
+    --mainColor: #3a9efd;
+    --secundaryColor: #3e4491;
+    --contrastColor: #f7a400;
+  }
+
+  body {
+    background-color: var(--backgroundColor);
+    color: #fff;
+  }
+
+  h1 {
+    margin-left: 1.6em;
+  }
+
+  nav {
+    background-color: var(--contrastColor);
+    height: 3em;
+    width: 100%;
+  }
+
+  header {
+    height: 30rem;
+  }
+
+  main {
+    background-color: var(--secundaryColor);
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+  }
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1rem;
-  padding: 1rem;
+@layer components {
+
+  section h2 {
+    margin-left: 1.6em;
+  }
+
+  /*********************/
+  /* scroll carrousell */
+  /*********************/
+  ul {
+    display: flex;
+    overflow: auto;
+    gap: 1em;
+    margin-top: 1em;
+
+    & li {
+      display: flex;
+      flex-direction: column;
+      gap: .5em;
+      align-items: center;
+
+      & img {
+        width: 8rem;
+        height: 12rem;
+        object-fit: cover;
+      }
+    }
+  }
+
+  ul::-webkit-scrollbar {
+    width: 0;
+  }
+
+  /*********************/
+  /*    Header Image   */
+  /*********************/
+
+}
+
+
+.headerImg {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
