@@ -16,13 +16,12 @@ const app = new App();
 app
     .use(logger())
     .use('/', sirv('src'))
-    .listen(4000);
+    .listen(7000);
 
 app.get('/', async (req, res) => {
     const movieData = await getMovieDBData('https://api.themoviedb.org/3/trending/all/day?language=en-US');
     const upcomingData = await getMovieDBData('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1');
-    const movieDetail = await getMovieDBData('https://api.themoviedb.org/3/movie/movie_id?language=en-US');
-    return res.send(renderTemplate('views/index.liquid', { title: 'DownloadMovieGetVirus', movieData, upcomingData, movieDetail }));
+    return res.send(renderTemplate('views/index.liquid', { title: 'DownloadMovieGetVirus', movieData, upcomingData }));
 });
 
 app.get('/movie/:id/', async (req, res) => {

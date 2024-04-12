@@ -1,6 +1,7 @@
 {% layout "layouts/base.liquid" %}
 {% block head %}
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="/index.css">
   {% endblock %}
 
 
@@ -8,7 +9,8 @@
 
 
   <header>
-    <img src="https://image.tmdb.org/t/p/w500{{ upcomingData.results[1].backdrop_path }}" alt="{{ upcomingData.results[0].title }}" class="headerImg">
+    <img src="https://image.tmdb.org/t/p/w500{{ upcomingData.results[0].poster_path }}" alt="{{ upcomingData.results[0].title }}" class="headerImg">
+    <img src="https://image.tmdb.org/t/p/w500{{ upcomingData.results[0].backdrop_path }}" alt="{{ upcomingData.results[0].title }}" class="headerBG">
   </header>
 
  

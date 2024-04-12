@@ -1,17 +1,26 @@
 {% layout "layouts/base.liquid" %}
 {% block head %}
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="/details.css">
   {% endblock %}
 
 
 {% block content %}
 
+<section>
+  <img src="https://image.tmdb.org/t/p/w500{{ movieDetail.results.poster_path }}" alt="{{ movieDetail.results.title }}" class="headerImg">
+  <img src="https://image.tmdb.org/t/p/w500{{ movieDetail.results.backdrop_path }}" alt="{{ movieDetail.results.title }}" class="headerBG">
+</section>
  
 
 
-<h2>
-{{ movieDetail.budget}}
-</h2>
+<ul>
+  <li>{{ movieDetail.title }}</li>
+  <li>{{ movieDetail.release_date}}</li>
+  <li>{{ movieDetail.overview }}</li>
+  <li>{{ movieDetail.budget}}</li>
+  <li>{{ movieDetail.vote_average}}</li>
+</ul>
 
 
 
