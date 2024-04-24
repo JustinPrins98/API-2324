@@ -29,9 +29,7 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-    // console.log(req.body);
     res.redirect('/search?q=' + req.body.searchInput);
-
 });
 
 
@@ -47,9 +45,7 @@ app.get('/search/', async (req, res) => {
 
 app.get('/movie/:id/', async (req, res) => {
     const movieId = req.params.id;
-    // console.log("movieID", movieId)
     const movieDetail = await getMovieDBData('https://api.themoviedb.org/3/movie/' + movieId + '?language=en-US');
-    // console.log(movieDetail.resultData)
     return res.send(renderTemplate('views/detail.liquid', { title: 'DownloadMovieGetVirus', movieDetail, }));
 });
 
