@@ -9,19 +9,16 @@
 
 
   <header>
-    <img src="https://image.tmdb.org/t/p/w500{{ upcomingData.results[0].poster_path }}" alt="{{ upcomingData.results[0].title }}" class="headerImg">
-    <img src="https://image.tmdb.org/t/p/w500{{ upcomingData.results[0].backdrop_path }}" alt="{{ upcomingData.results[0].title }}" class="headerBG">
+    <img src="https://image.tmdb.org/t/p/w500{{ upcomingData.results[7].poster_path }}" alt="{{ upcomingData.results[5].title }}" class="headerImg">
+    <img src="https://image.tmdb.org/t/p/w500{{ upcomingData.results[7].backdrop_path }}" alt="{{ upcomingData.results[5].title }}" class="headerBG">
   </header>
 
  
 
   <main>
-    <form>
-      <label for="searchSite">Search for a movie</label>
-      <input type="search" id="searchSite">
-    </form>
+    
 <section>
-  <h2> Trending </h2>
+  <h2 class="trendingH2"> Trending </h2>
   <ul>
     {% for movie in movieData.results  %}  
     <li>
@@ -34,6 +31,38 @@
     {% endfor %}  
   </ul>
 </section>
+
+<section>
+  <h2> Top rated </h2>
+  <ul >
+  {% for movie in ratedData.results  %} 
+  <li>
+    <a href="/movie/{{movie.id}}">
+      <img src="https://image.tmdb.org/t/p/w400{{ movie.poster_path }}" alt="{{ movie.title }}">
+      <span>{{ movie.title | default: movie.name }}</span> 
+      </a>
+      </li>
+      
+  {% endfor %}
+  </ul>
+</section>
+
+
+<section>
+  <h2> Upcoming </h2>
+  <ul>
+  {% for movie in upcomingData.results  %} 
+  <li>
+    <a href="/movie/{{movie.id}}">
+      <img src="https://image.tmdb.org/t/p/w400{{ movie.poster_path }}" alt="{{ movie.title }}">
+      <span>{{ movie.title | default: movie.name }}</span> 
+      </a>
+      </li>
+     
+  {% endfor %}
+  </ul>
+</section>
+
 </main>
 
   

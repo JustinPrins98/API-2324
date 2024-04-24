@@ -1,0 +1,31 @@
+{% layout "layouts/base.liquid" %}
+{% block head %}
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/search.css">
+  {% endblock %}
+
+
+{% block content %}
+
+  <main>
+<section class="search-resultsSection">
+  <h2 class="searchResultsH2"> Results for {{ query }} </h2>
+  <ul class="searchResultsUl">
+    {% for movie in resultData.results  %}  
+      {% if movie.poster_path %}
+        <li>
+          <a href="/movie/{{movie.id}}">
+            <img src="https://image.tmdb.org/t/p/w400{{ movie.poster_path }}" alt="{{ movie.title }}">
+            <span>{{ movie.title | default: movie.name }}</span>
+          </a>
+            
+        </li>
+      {% endif %}
+    {% endfor %}  
+  </ul>
+</section>
+
+</main>
+
+  
+{% endblock %}

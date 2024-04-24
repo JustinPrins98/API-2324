@@ -7,20 +7,21 @@
 
 {% block content %}
 
-<section>
-  <img src="https://image.tmdb.org/t/p/w500{{ movieDetail.results.poster_path }}" alt="{{ movieDetail.results.title }}" class="headerImg">
-  <img src="https://image.tmdb.org/t/p/w500{{ movieDetail.results.backdrop_path }}" alt="{{ movieDetail.results.title }}" class="headerBG">
-</section>
+
+  <img src="https://image.tmdb.org/t/p/w500{{ movieDetail.poster_path }}" alt="{{ movieDetail.resultData.title }}" class="headerImg">
+  <img src="https://image.tmdb.org/t/p/w500{{ movieDetail.backdrop_path }}" alt="{{ movieDetail.resultData.title }}" class="headerBG">
+
  
 
-
-<ul>
+<section>
+<ul> 
   <li>{{ movieDetail.title }}</li>
   <li>{{ movieDetail.release_date}}</li>
   <li>{{ movieDetail.overview }}</li>
   <li>{{ movieDetail.budget}}</li>
   <li>{{ movieDetail.vote_average}}</li>
 </ul>
+</section>
 
 
 

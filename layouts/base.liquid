@@ -2,6 +2,9 @@
 <head>
   {% block head %}
     <title>My First Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
   {% endblock %}
 </head >
 
@@ -9,12 +12,17 @@
 
 <body>
   <nav>
-    <a href="http://localhost:7000">
+    <a href="http://localhost:7002">
     <h1>{{ title }}</h1>
     </a>
+
+    <form action="/" method="post">
+      <input type="search" id="searchSite" name="searchInput" placeholder="Search for a Movie">
+    </form>
   </nav>
   {% block content %}
     
   {% endblock %}
+  <script src="/src/index.js"></script>
 </body>
 </html>
